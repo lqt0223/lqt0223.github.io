@@ -11,6 +11,10 @@
 </body>
 </html>
 <script type="text/javascript">
+
+//微信的标题栏会导致地图控件偏下，所以要缩短一点body的高度
+document.body.style.height = window.innerHeight - 100 + "px";
+
 var showMap = function(lon,lat){
 	//现在所在位置
 	var point = new BMap.Point(lon,lat);
@@ -19,10 +23,6 @@ var showMap = function(lon,lat){
 	var map = new BMap.Map("map");
 	map.centerAndZoom(point,15);
 	var navigationControl = new BMap.NavigationControl();
-
-	//在微信上，微信上面有一个标题栏会导致地图控件偏下，所以要重新设置停靠
-	navigationControl.setAnchor(BMAP_ANCHOR_BOTTOM_RIGHT);
-	map.addControl(navigationControl);
 
 	//圆点，表示现在所在地
 	var circle = new BMap.Circle(point, 20);
@@ -52,5 +52,4 @@ var geoError = function(position) {
 };
 
 navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
-
 </script>
