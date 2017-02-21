@@ -20,10 +20,8 @@ var showMap = function(lon,lat){
 	map.centerAndZoom(point,15);
 	var navigationControl = new BMap.NavigationControl();
 
-	//在微信上，微信上面有一个标题栏会导致地图控件偏下，所以要上移一点
-	var originalOffset = navigationControl.getOffset();
-	originalOffset.height -= 300;
-	navigationControl.setOffset(originalOffset);
+	//在微信上，微信上面有一个标题栏会导致地图控件偏下，所以要重新设置停靠
+	navigationControl.setAnchor(BMAP_ANCHOR_BOTTOM_RIGHT);
 	map.addControl(navigationControl);
 
 	//圆点，表示现在所在地
