@@ -1,27 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+<meta name="viewport" content="initial-scale=1.0,user-scalable=no" />
 </head>
 <body>
-<button onclick="getLocation()">click</button>
+<p>你的位置为： <span id="description"></span></p>
+<div id="map"></div>
+<script type="text/javascript" src="http://api.baidu.com/api?v=2.0&ak=FPKDtfSA7WBlEmt9lpvEhmfP"></script>
 <script type="text/javascript">
-  var geoSuccess = function(position) {
-	  document.write(position.coords.latitude + " / " + position.coords.longitude); 
-
-  };
-  var geoError = function(error) {
-    console.log('Error occurred. Error code: ' + error.code);
-    // error.code can be:
-    //   0: unknown error
-    //   1: permission denied
-    //   2: position unavailable (error response from location provider)
-    //   3: timed out
-  };
- function getLocation(){
-		navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
-
+var showMap = function(lon,lat){
+	var map = new BMap.Map("map");
+	map.centerAndZoom(new BMap.Point(lon,lat),11);
+	map.addControl(new BMap.NavigationControl());
+	// map.setCurrentCity("");
 };
+
+var geoSuccess = function(position) {
+	var lon = position.coords.longitude;
+	var lat = position.coords.latitude;
+	showMap(lon,lat);
+	// showDescription(lon,lat);
+};
+var geoError = function(position) {
+	console.log('Error occurred. Error code: ' + error);
+};
+
+navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
 
 </script>
 </body>
