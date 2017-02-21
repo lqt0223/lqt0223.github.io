@@ -7,9 +7,8 @@
 <button onclick="getLocation()">click</button>
 <script type="text/javascript">
   var geoSuccess = function(position) {
-    startPos = position;
-    document.getElementById('startLat').innerHTML = startPos.coords.latitude;
-    document.getElementById('startLon').innerHTML = startPos.coords.longitude;
+	  document.write(position.coords.latitude + " / " + position.coords.longitude; 
+
   };
   var geoError = function(error) {
     console.log('Error occurred. Error code: ' + error.code);
