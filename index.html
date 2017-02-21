@@ -2,11 +2,14 @@
 <head>
 <meta name="viewport" content="initial-scale=1.0,user-scalable=no" />
 <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+<script type="text/javascript" src="http://api.baidu.com/api?v=2.0&ak=FPKDtfSA7WBlEmt9lpvEhmfP"></script>
 </head>
 <body>
 <p>你的位置为： <span id="description"></span></p>
 <div id="map"></div>
-<script type="text/javascript" src="http://api.baidu.com/api?v=2.0&ak=FPKDtfSA7WBlEmt9lpvEhmfP"></script>
+
+</body>
+</html>
 <script type="text/javascript">
 var showMap = function(lon,lat){
 	var map = new BMap.Map("map");
@@ -28,5 +31,3 @@ var geoError = function(position) {
 navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
 
 </script>
-</body>
-</html>
