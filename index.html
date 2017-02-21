@@ -12,17 +12,41 @@
 </html>
 <script type="text/javascript">
 var showMap = function(lon,lat){
+	//现在所在位置
+	var point = new BMap.Point(lon.lat);
+
+	//地图
 	var map = new BMap.Map("map");
-	map.centerAndZoom(new BMap.Point(lon,lat),11);
-	map.addControl(new BMap.NavigationControl());
-	// map.setCurrentCity("");
+	map.centerAndZoom(point,15);
+	var navigationControl = new BMap.NavigationControl();
+
+	//在微信上，微信上面有一个标题栏会导致地图控件偏下，所以要上移一点
+	var originalOffset = navigationControl.getOffset();
+	originalOffset.height -= 100;
+	navigationControl.setOffset(originalOffset);
+	map.addControl(navigationControl);
+
+	//圆点，表示现在所在地
+	var circle = new BMap.Circle(point, 20);
+	circle.setFillColor("#7db6c4");
+};
+
+var showDescription = function(lon,lat){
+	var geoCoder = new BMap.GeoCoder();
+
+	//现在所在位置
+	var point = new BMap.Point(lon.lat);
+	geoCoder.getLocation(point,function(result){
+		var locationString = result.address;
+		document.getElementById("description").innerText = locationString;
+	});
 };
 
 var geoSuccess = function(position) {
 	var lon = position.coords.longitude;
 	var lat = position.coords.latitude;
 	showMap(lon,lat);
-	// showDescription(lon,lat);
+	showDescription(lon,lat);
 };
 var geoError = function(position) {
 	console.log('Error occurred. Error code: ' + error);
