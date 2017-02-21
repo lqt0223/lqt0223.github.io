@@ -13,9 +13,7 @@
 <script type="text/javascript">
 
 var showMap = function(lon,lat){
-	//得到设备屏幕高度，把地图显示的范围改小一点。（因为上面有微信的标题栏和手机的状态栏）
-	var screenHeight = window.innerHeight;
-	document.getElementById("map").style.height = screenHeight - 64 + "px";
+
 
 	//现在所在位置
 	var point = new BMap.Point(lon,lat);
@@ -30,6 +28,9 @@ var showMap = function(lon,lat){
 	circle.setFillColor("#7db6c4");
 	map.addOverlay(circle);
 
+	//得到设备屏幕高度，把地图显示的范围改小一点。（因为上面有微信的标题栏和手机的状态栏，地图的控件会显示不全）
+	var screenHeight = window.innerHeight;
+	document.getElementById("map").style.height = screenHeight - 64 + "px";
 };
 
 var showDescription = function(lon,lat){
