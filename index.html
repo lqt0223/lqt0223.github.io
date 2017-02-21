@@ -22,13 +22,14 @@ var showMap = function(lon,lat){
 
 	//在微信上，微信上面有一个标题栏会导致地图控件偏下，所以要上移一点
 	var originalOffset = navigationControl.getOffset();
-	originalOffset.height -= 100;
+	originalOffset.height -= 300;
 	navigationControl.setOffset(originalOffset);
 	map.addControl(navigationControl);
 
 	//圆点，表示现在所在地
 	var circle = new BMap.Circle(point, 20);
 	circle.setFillColor("#7db6c4");
+	map.addOverlay(circle);
 };
 
 var showDescription = function(lon,lat){
