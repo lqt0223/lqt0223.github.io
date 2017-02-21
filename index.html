@@ -19,7 +19,11 @@
     //   2: position unavailable (error response from location provider)
     //   3: timed out
   };
-	navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
+	
+var getLocation = function(){
+		navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
+
+};
 
 </script>
 </body>
