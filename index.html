@@ -6,13 +6,17 @@
 </head>
 <body>
 <p>你的位置为： <span id="description"></span></p>
-<div id="map" style="width: 100%;height: 100%;margin: 0;overflow: hidden"></div>
+<div id="map" style="width: 100%;margin: 0;overflow: hidden"></div>
 
 </body>
 </html>
 <script type="text/javascript">
 
 var showMap = function(lon,lat){
+	//得到设备屏幕高度，把地图显示的范围改小一点。（因为上面有微信的标题栏和手机的状态栏）
+	var screenHeight = window.innerHeight;
+	document.getElementById("map").style.height = screenHeight - 64 + "px";
+
 	//现在所在位置
 	var point = new BMap.Point(lon,lat);
 
@@ -26,8 +30,6 @@ var showMap = function(lon,lat){
 	circle.setFillColor("#7db6c4");
 	map.addOverlay(circle);
 
-	//在微信上，微信上面有一个标题栏会导致地图控件偏下，所以要缩短一点body的高度
-	document.body.style.height = window.innerHeight - 100 + "px";
 };
 
 var showDescription = function(lon,lat){
