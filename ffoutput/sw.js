@@ -1,15 +1,14 @@
 let token
 
-self.addEventListener('install', event => {
-  const params = new URL(location);
-  token = params.searchParams.get('token');
-})
-
 self.addEventListener("fetch", event => {
   if (new URL(event.request.url).origin == "https://www.googleapis.com") { //only add header to the endpoint i want
     event.respondWith(customHeaderRequestFetch(event));
   }
 });
+
+self.addEventListener('message',  event => {
+  token = event.data
+})
 
 function customHeaderRequestFetch(event) {
   const newRequest = new Request(event.request, {
